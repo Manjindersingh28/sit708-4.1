@@ -1,10 +1,9 @@
-
 package com.example.taskmanager;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "task_table")
+@Entity(tableName = "task_entries")
 public class Task {
     @PrimaryKey(autoGenerate = true)
     public int id;

@@ -32,14 +32,14 @@ public final class TaskDatabase_Impl extends TaskDatabase {
     final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(1) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS `task_table` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `description` TEXT, `dueDate` TEXT)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `task_entries` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `description` TEXT, `dueDate` TEXT)");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a036c9e17b912da503c20004c28673b7')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '87e5b2b079bd362f89d8200f7bed53fc')");
       }
 
       @Override
       public void dropAllTables(@NonNull final SupportSQLiteDatabase db) {
-        db.execSQL("DROP TABLE IF EXISTS `task_table`");
+        db.execSQL("DROP TABLE IF EXISTS `task_entries`");
         final List<? extends RoomDatabase.Callback> _callbacks = mCallbacks;
         if (_callbacks != null) {
           for (RoomDatabase.Callback _callback : _callbacks) {
@@ -83,23 +83,23 @@ public final class TaskDatabase_Impl extends TaskDatabase {
       @NonNull
       public RoomOpenHelper.ValidationResult onValidateSchema(
           @NonNull final SupportSQLiteDatabase db) {
-        final HashMap<String, TableInfo.Column> _columnsTaskTable = new HashMap<String, TableInfo.Column>(4);
-        _columnsTaskTable.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsTaskTable.put("title", new TableInfo.Column("title", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsTaskTable.put("description", new TableInfo.Column("description", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsTaskTable.put("dueDate", new TableInfo.Column("dueDate", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        final HashSet<TableInfo.ForeignKey> _foreignKeysTaskTable = new HashSet<TableInfo.ForeignKey>(0);
-        final HashSet<TableInfo.Index> _indicesTaskTable = new HashSet<TableInfo.Index>(0);
-        final TableInfo _infoTaskTable = new TableInfo("task_table", _columnsTaskTable, _foreignKeysTaskTable, _indicesTaskTable);
-        final TableInfo _existingTaskTable = TableInfo.read(db, "task_table");
-        if (!_infoTaskTable.equals(_existingTaskTable)) {
-          return new RoomOpenHelper.ValidationResult(false, "task_table(com.example.taskmanager.Task).\n"
-                  + " Expected:\n" + _infoTaskTable + "\n"
-                  + " Found:\n" + _existingTaskTable);
+        final HashMap<String, TableInfo.Column> _columnsTaskEntries = new HashMap<String, TableInfo.Column>(4);
+        _columnsTaskEntries.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTaskEntries.put("title", new TableInfo.Column("title", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTaskEntries.put("description", new TableInfo.Column("description", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTaskEntries.put("dueDate", new TableInfo.Column("dueDate", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        final HashSet<TableInfo.ForeignKey> _foreignKeysTaskEntries = new HashSet<TableInfo.ForeignKey>(0);
+        final HashSet<TableInfo.Index> _indicesTaskEntries = new HashSet<TableInfo.Index>(0);
+        final TableInfo _infoTaskEntries = new TableInfo("task_entries", _columnsTaskEntries, _foreignKeysTaskEntries, _indicesTaskEntries);
+        final TableInfo _existingTaskEntries = TableInfo.read(db, "task_entries");
+        if (!_infoTaskEntries.equals(_existingTaskEntries)) {
+          return new RoomOpenHelper.ValidationResult(false, "task_entries(com.example.taskmanager.Task).\n"
+                  + " Expected:\n" + _infoTaskEntries + "\n"
+                  + " Found:\n" + _existingTaskEntries);
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "a036c9e17b912da503c20004c28673b7", "c39c1c99e67fb132d56cefba3330af20");
+    }, "87e5b2b079bd362f89d8200f7bed53fc", "5f7f0655cbbbf81c24d15c84005d33f1");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;
@@ -110,7 +110,7 @@ public final class TaskDatabase_Impl extends TaskDatabase {
   protected InvalidationTracker createInvalidationTracker() {
     final HashMap<String, String> _shadowTablesMap = new HashMap<String, String>(0);
     final HashMap<String, Set<String>> _viewTables = new HashMap<String, Set<String>>(0);
-    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "task_table");
+    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "task_entries");
   }
 
   @Override
@@ -119,7 +119,7 @@ public final class TaskDatabase_Impl extends TaskDatabase {
     final SupportSQLiteDatabase _db = super.getOpenHelper().getWritableDatabase();
     try {
       super.beginTransaction();
-      _db.execSQL("DELETE FROM `task_table`");
+      _db.execSQL("DELETE FROM `task_entries`");
       super.setTransactionSuccessful();
     } finally {
       super.endTransaction();
@@ -154,7 +154,7 @@ public final class TaskDatabase_Impl extends TaskDatabase {
   }
 
   @Override
-  public TaskDao taskDao() {
+  public TaskDao taskAccessObject() {
     if (_taskDao != null) {
       return _taskDao;
     } else {

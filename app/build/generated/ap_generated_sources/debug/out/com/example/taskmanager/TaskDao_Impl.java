@@ -33,7 +33,7 @@ public final class TaskDao_Impl implements TaskDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR ABORT INTO `task_table` (`id`,`title`,`description`,`dueDate`) VALUES (nullif(?, 0),?,?,?)";
+        return "INSERT OR ABORT INTO `task_entries` (`id`,`title`,`description`,`dueDate`) VALUES (nullif(?, 0),?,?,?)";
       }
 
       @Override
@@ -60,7 +60,7 @@ public final class TaskDao_Impl implements TaskDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "DELETE FROM `task_table` WHERE `id` = ?";
+        return "DELETE FROM `task_entries` WHERE `id` = ?";
       }
 
       @Override
@@ -72,7 +72,7 @@ public final class TaskDao_Impl implements TaskDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `task_table` SET `id` = ?,`title` = ?,`description` = ?,`dueDate` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `task_entries` SET `id` = ?,`title` = ?,`description` = ?,`dueDate` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -99,7 +99,7 @@ public final class TaskDao_Impl implements TaskDao {
   }
 
   @Override
-  public void insert(final Task task) {
+  public void add(final Task task) {
     __db.assertNotSuspendingTransaction();
     __db.beginTransaction();
     try {
@@ -111,7 +111,7 @@ public final class TaskDao_Impl implements TaskDao {
   }
 
   @Override
-  public void delete(final Task task) {
+  public void remove(final Task task) {
     __db.assertNotSuspendingTransaction();
     __db.beginTransaction();
     try {
@@ -123,7 +123,7 @@ public final class TaskDao_Impl implements TaskDao {
   }
 
   @Override
-  public void update(final Task task) {
+  public void modify(final Task task) {
     __db.assertNotSuspendingTransaction();
     __db.beginTransaction();
     try {
@@ -135,8 +135,8 @@ public final class TaskDao_Impl implements TaskDao {
   }
 
   @Override
-  public List<Task> getAllTasks() {
-    final String _sql = "SELECT * FROM task_table ORDER BY dueDate ASC";
+  public List<Task> fetchAll() {
+    final String _sql = "SELECT * FROM task_entries ORDER BY dueDate ASC";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     __db.assertNotSuspendingTransaction();
     final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
@@ -178,8 +178,8 @@ public final class TaskDao_Impl implements TaskDao {
   }
 
   @Override
-  public Task getTaskById(final int id) {
-    final String _sql = "SELECT * FROM task_table WHERE id = ? LIMIT 1";
+  public Task fetchById(final int id) {
+    final String _sql = "SELECT * FROM task_entries WHERE id = ? LIMIT 1";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
     _statement.bindLong(_argIndex, id);

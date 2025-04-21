@@ -23,9 +23,13 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="com.example.taskmanager.AddEditTaskActivity" />
+
+        <!-- Task Editor Screen -->
+        <activity android:name="com.example.taskmanager.TaskEditorActivity" />
+
+        <!-- Launcher/Main Screen -->
         <activity
-            android:name="com.example.taskmanager.MainActivity"
+            android:name="com.example.taskmanager.MainScreenActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

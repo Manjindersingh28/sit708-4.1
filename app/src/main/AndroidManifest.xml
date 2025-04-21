@@ -8,10 +8,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".AddEditTaskActivity" />
+        <!-- Task Editor Screen -->
+        <activity android:name=".TaskEditorActivity" />
 
+        <!-- Launcher/Main Screen -->
         <activity
-            android:name=".MainActivity"
+            android:name=".MainScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

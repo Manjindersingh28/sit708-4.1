@@ -1,14 +1,18 @@
 [
     {
-        "merged": "com.example.taskmanager.app-debug-36:/layout_item_task.xml.flat",
-        "source": "com.example.taskmanager.app-main-38:/layout/item_task.xml"
+        "merged": "/Users/manjindermaan/.gradle/daemon/8.11.1/com.example.taskmanager.app-debug-36:/layout_screen_main.xml.flat",
+        "source": "/Users/manjindermaan/.gradle/daemon/8.11.1/com.example.taskmanager.app-main-38:/layout/screen_main.xml"
     },
     {
-        "merged": "com.example.taskmanager.app-debug-36:/layout_activity_add_edit_task.xml.flat",
-        "source": "com.example.taskmanager.app-main-38:/layout/activity_add_edit_task.xml"
+        "merged": "/Users/manjindermaan/.gradle/daemon/8.11.1/com.example.taskmanager.app-debug-36:/layout_screen_task_editor.xml.flat",
+        "source": "/Users/manjindermaan/.gradle/daemon/8.11.1/com.example.taskmanager.app-main-38:/layout/screen_task_editor.xml"
     },
     {
-        "merged": "com.example.taskmanager.app-debug-36:/layout_activity_main.xml.flat",
-        "source": "com.example.taskmanager.app-main-38:/layout/activity_main.xml"
+        "merged": "com.example.taskmanager.app-debug-36:/layout_screen_task_editor.xml.flat",
+        "source": "com.example.taskmanager.app-main-38:/layout/screen_task_editor.xml"
+    },
+    {
+        "merged": "/Users/manjindermaan/.gradle/daemon/8.11.1/com.example.taskmanager.app-debug-36:/layout_item_task.xml.flat",
+        "source": "/Users/manjindermaan/.gradle/daemon/8.11.1/com.example.taskmanager.app-main-38:/layout/item_task.xml"
     }
 ]

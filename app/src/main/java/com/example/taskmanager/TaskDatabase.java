@@ -1,4 +1,3 @@
-
 package com.example.taskmanager;
 
 import android.content.Context;
@@ -9,12 +8,12 @@ import androidx.room.RoomDatabase;
 @Database(entities = {Task.class}, version = 1)
 public abstract class TaskDatabase extends RoomDatabase {
     private static TaskDatabase instance;
-    public abstract TaskDao taskDao();
+    public abstract TaskDao taskAccessObject();
 
-    public static synchronized TaskDatabase getInstance(Context context) {
+    public static synchronized TaskDatabase getDbInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    TaskDatabase.class, "task_database")
+                            TaskDatabase.class, "tasks_storage")
                     .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()
                     .build();

@@ -3069,9 +3069,8 @@ id beginning
 id blocking
 id bottom
 id bounce
-id buttonDelete
+id btnAddTask
 id buttonPanel
-id buttonSave
 id cancel_button
 id center
 id centerCrop
@@ -3107,6 +3106,7 @@ id decelerate
 id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
+id deleteBtn
 id deltaRelative
 id design_bottom_sheet
 id design_menu_item_action_area
@@ -3131,9 +3131,6 @@ id easeIn
 id easeInOut
 id easeOut
 id edge
-id editTextDescription
-id editTextDueDate
-id editTextTitle
 id edit_query
 id elastic
 id embed
@@ -3144,7 +3141,6 @@ id enterAlwaysCollapsed
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
-id fab
 id fade
 id fill
 id fill_horizontal
@@ -3181,6 +3177,9 @@ id ignoreRequest
 id image
 id indeterminate
 id info
+id inputDate
+id inputDescription
+id inputTitle
 id invisible
 id inward
 id is_pooling_container_tag
@@ -3310,7 +3309,6 @@ id progress_horizontal
 id radio
 id ratio
 id rectangles
-id recyclerView
 id report_drawn
 id reverseSawtooth
 id right
@@ -3319,6 +3317,7 @@ id right_icon
 id right_side
 id rounded
 id row_index_key
+id saveBtn
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -3388,6 +3387,7 @@ id tag_transition_group
 id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
 id tag_window_insets_animation_callback
+id taskListView
 id text
 id text2
 id textEnd
@@ -3553,8 +3553,6 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
-layout activity_add_edit_task
-layout activity_main
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -3629,6 +3627,8 @@ layout notification_template_custom_big
 layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout screen_main
+layout screen_task_editor
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
